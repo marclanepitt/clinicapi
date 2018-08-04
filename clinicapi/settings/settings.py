@@ -61,7 +61,7 @@ INSTALLED_APPS = [
     'apps.management',
     'apps.users',
     'apps.clinics',
-    
+
     # 3rd party apps
     'django_extensions',
     'rest_framework',
@@ -178,9 +178,9 @@ ACCOUNT_USER_DISPLAY = lambda user: user.email
 ACCOUNT_USERNAME_REQUIRED = False
 
 #email config
-# SERVER_EMAIL = 
+# SERVER_EMAIL =
 # # Email address regular users receive mail from
-# DEFAULT_FROM_EMAIL = 
+# DEFAULT_FROM_EMAIL =
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.11/topics/i18n/

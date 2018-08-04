@@ -14,7 +14,7 @@ from rest_auth.views import PasswordResetView
 import json
 from rest_framework import permissions
 from . import serializers
-from ..models import UserProfile
+from ..models import StaffUser, CustomerUser
 
 # {
 # "auth":{"username":"q@q.com","password":"qqqqqqqq"}
