@@ -5,16 +5,22 @@ class Sport(models.Model):
     name = models.CharField(max_length=100)
     icon = models.CharField(max_length=100)
 
+    def __str__(self):
+        return self.name
+
 class Clinic(models.Model):
     name = models.CharField(max_length=200)
     description = models.CharField(max_length=500)
     sport = models.ForeignKey(Sport, on_delete=models.CASCADE)
     organizer = models.ForeignKey(StaffUser, on_delete=models.CASCADE)
-    image = models.ImageField()
+    image = models.ImageField(null=True)
     county = models.CharField(max_length=100)
 
+    def __str__(self):
+        return self.name
+
 class Event(models.Model):
-    date = models.DateTimeField()
+    datetime = models.DateTimeField()
     name = models.CharField(max_length=200)
     description = models.CharField(max_length=500)
     clinic = models.ForeignKey(Clinic, on_delete=models.CASCADE)
@@ -23,7 +29,7 @@ class Event(models.Model):
     rating = models.IntegerField()
     age_range = models.CharField(max_length=12)
     SKILL_CHOICES = (
-        ('ALL', 'ALL')
+        ('ALL', 'ALL'),
         ('BEG', 'Beginner'),
         ('MID', 'Mid Level'),
         ('HGH', 'High Level')
@@ -33,3 +39,5 @@ class Event(models.Model):
         choices=SKILL_CHOICES,
         default='ALL'
     )
+    def __str__(self):
+        return self.name

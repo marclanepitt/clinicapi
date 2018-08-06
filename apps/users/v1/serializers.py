@@ -10,19 +10,19 @@ from allauth.account import app_settings as allauth_settings
 from allauth.utils import (email_address_exists,
 get_username_max_length)
 
-from apps.users.models import UserProfile
+from apps.users.models import StaffUser
 
 class PasswordResetSerializerFix(PasswordResetSerializer):
     password_reset_form_class = CustomPasswordResetForm
 
-class UserProfileSerializer(serializers.ModelSerializer):
+class StaffSerializer(serializers.ModelSerializer):
     class Meta:
-        model = UserProfile
+        model = StaffUser
         fields = ("id",)
 
 class UserDetailSerializer(serializers.ModelSerializer):
     full_name = serializers.SerializerMethodField()
-    userprofile = UserProfileSerializer()
+    userprofile = StaffSerializer()
 
     def get_full_name(self, obj):
         return '{} {}'.format(obj.first_name, obj.last_name)
@@ -34,7 +34,7 @@ class UserDetailSerializer(serializers.ModelSerializer):
 
 class UserDetailRestKnoxFix(serializers.ModelSerializer):
     full_name = serializers.SerializerMethodField()
-    userprofile = UserProfileSerializer()
+    userprofile = StaffSerializer()
 
     def get_full_name(self, obj):
         return '{} {}'.format(obj.first_name, obj.last_name)

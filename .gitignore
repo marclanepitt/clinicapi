@@ -68,7 +68,6 @@ coverage.xml
 /dist/
 media/*
 !media/.gitkeep
-local_settings.py
 static/CACHE/
 
 # Sphinx documentation

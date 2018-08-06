@@ -47,14 +47,14 @@ class UserDetailView(generics.RetrieveAPIView):
 
 
 class UserProfileCreateView(generics.CreateAPIView):
-    serializer_class = serializers.UserProfileSerializer
+    serializer_class = serializers.StaffSerializer
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
 
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
 
 class UserProfileListView(generics.ListAPIView):
-    serializer_class = serializers.UserProfileSerializer
+    serializer_class = serializers.StaffSerializer
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
 
 class RegistrationView(RegisterView):
