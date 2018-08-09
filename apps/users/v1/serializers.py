@@ -1,4 +1,4 @@
-from django.contrib.auth.models import User
+from ..models import User
 from rest_auth.registration.serializers import RegisterSerializer
 from rest_auth.serializers import PasswordResetSerializer
 from rest_framework import serializers,exceptions
@@ -10,19 +10,19 @@ from allauth.account import app_settings as allauth_settings
 from allauth.utils import (email_address_exists,
 get_username_max_length)
 
-from apps.users.models import StaffUser
+from apps.users.models import UserProfile
 
 class PasswordResetSerializerFix(PasswordResetSerializer):
     password_reset_form_class = CustomPasswordResetForm
 
-class StaffSerializer(serializers.ModelSerializer):
+class UserProfileSerializer(serializers.ModelSerializer):
     class Meta:
-        model = StaffUser
+        model = UserProfile
         fields = ("id",)
 
 class UserDetailSerializer(serializers.ModelSerializer):
     full_name = serializers.SerializerMethodField()
-    userprofile = StaffSerializer()
+    userprofile = UserProfileSerializer()
 
     def get_full_name(self, obj):
         return '{} {}'.format(obj.first_name, obj.last_name)
@@ -34,7 +34,7 @@ class UserDetailSerializer(serializers.ModelSerializer):
 
 class UserDetailRestKnoxFix(serializers.ModelSerializer):
     full_name = serializers.SerializerMethodField()
-    userprofile = StaffSerializer()
+    userprofile = UserProfileSerializer()
 
     def get_full_name(self, obj):
         return '{} {}'.format(obj.first_name, obj.last_name)

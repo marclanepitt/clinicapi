@@ -1,10 +1,10 @@
 from django.contrib import admin
 
-from .models import StaffUser
+from .models import UserProfile
 
 
 class UserAdmin(admin.ModelAdmin):
     pass
 
 
-admin.site.register(StaffUser)
+admin.site.register(UserProfile)

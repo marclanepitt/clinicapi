@@ -1,4 +1,4 @@
-from django.contrib.auth.models import User
+from ...models import User
 from django.utils import timezone
 from factory import django, Faker, LazyAttribute, LazyFunction, Sequence, PostGenerationMethodCall
 

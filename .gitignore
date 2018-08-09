@@ -92,6 +92,8 @@ celerybeat-schedule
 venv/
 ENV/
 
+.vscode
+
 # Node js dependencies
 node_modules/
 

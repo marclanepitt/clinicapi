@@ -1,4 +1,4 @@
-from django.contrib.auth.models import User
+from ..models import User
 from django.shortcuts import get_object_or_404
 from knox.auth import TokenAuthentication
 from knox.views import LoginView
@@ -14,7 +14,7 @@ from rest_auth.views import PasswordResetView
 import json
 from rest_framework import permissions
 from . import serializers
-from ..models import StaffUser, CustomerUser
+from ..models import UserProfile
 
 # {
 # "auth":{"username":"q@q.com","password":"qqqqqqqq"}
@@ -47,14 +47,14 @@ class UserDetailView(generics.RetrieveAPIView):
 
 
 class UserProfileCreateView(generics.CreateAPIView):
-    serializer_class = serializers.StaffSerializer
+    serializer_class = serializers.UserProfileSerializer
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
 
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
 
 class UserProfileListView(generics.ListAPIView):
-    serializer_class = serializers.StaffSerializer
+    serializer_class = serializers.UserProfileSerializer
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
 
 class RegistrationView(RegisterView):

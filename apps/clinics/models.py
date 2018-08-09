@@ -1,5 +1,5 @@
 from django.db import models
-from apps.users.models import StaffUser
+from apps.users.models import UserProfile
 
 class Sport(models.Model):
     name = models.CharField(max_length=100)
@@ -12,7 +12,8 @@ class Clinic(models.Model):
     name = models.CharField(max_length=200)
     description = models.CharField(max_length=500)
     sport = models.ForeignKey(Sport, on_delete=models.CASCADE)
-    organizer = models.ForeignKey(StaffUser, on_delete=models.CASCADE)
+    organizer = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
+    phone = models.CharField(max_length=12)
     image = models.ImageField(null=True)
     county = models.CharField(max_length=100)
 
